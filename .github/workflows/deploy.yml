@@ -1,0 +1,33 @@
+name: Deploy Quasar TS Site
+
+on:
+  push:
+    branches:
+      - main # 或是你的預設分支名稱
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 📥
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies 📦
+        run: npm install
+
+      - name: Type Check & Build 🚀
+        # Vite 版本的 Quasar 會在 build 時自動進行 TS 檢查
+        run: npx quasar build
+
+      - name: Deploy to GitHub Pages ✈️
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist/spa
+          branch: gh-pages

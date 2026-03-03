@@ -29,14 +29,6 @@
 
 ## 4. 領域知識 (Domain Context)
 
-- **業務領域:** 電動車充電樁管理系統 (EV Charging Station Management)。
-- **關鍵術語:**
-  - 充電樁 (Charging Pile / Station)
-  - 槍頭 (Connector / Gun)
-  - 站點 (Site / Station)
-  - eSIM / 連線模組
-- **命名建議:** 變數命名時請參考相關領域術語 (例如 `connectorStatus`, `startCharging`, `stationId`)。
-
 ## 5. 常見路徑 (File Structure Hints)
 
 - `src/pages`: 頁面視圖 (Views)

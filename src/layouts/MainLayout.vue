@@ -2,40 +2,22 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+        <!-- 導覽列按鈕 -->
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+        <!-- 標題 -->
+        <q-toolbar-title> Quasar App </q-toolbar-title>
 
+        <!-- 版本 -->
         <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-    >
+    <!-- 左側導覽列 -->
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in linksList"
-          :key="link.title"
-          v-bind="link"
-        />
+        <!-- 連結列表 -->
+        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
 
@@ -51,52 +33,34 @@ import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink
 
 const linksList: EssentialLinkProps[] = [
   {
+    title: '首頁',
+    caption: '回首頁',
+    icon: 'home',
+    link: '/',
+  },
+  {
+    title: '設定',
+    caption: '個人與系統設定',
+    icon: 'settings',
+    link: '/settings',
+  },
+  {
     title: 'Docs',
-    caption: 'quasar.dev',
+    caption: 'Quasar 官方文件',
     icon: 'school',
-    link: 'https://quasar.dev'
+    link: 'https://quasar.dev',
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
+    title: '網站Github',
+    caption: 'github.com/WeiHsuanLai/VueDemo',
     icon: 'code',
-    link: 'https://github.com/quasarframework'
+    link: 'https://github.com/WeiHsuanLai/VueDemo',
   },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
 ];
 
 const leftDrawerOpen = ref(false);
 
-function toggleLeftDrawer () {
+function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>

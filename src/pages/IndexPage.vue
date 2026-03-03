@@ -7,13 +7,13 @@
       <q-card
         flat
         bordered
-        class="q-pa-lg q-mt-lg bg-white shadow-1"
+        class="q-pa-lg q-mt-lg shadow-1"
         style="min-width: 350px; border-radius: 12px"
       >
         <!-- 載入中狀態 -->
         <div v-if="loadingLocation || loadingWeather" class="column items-center q-py-xl">
           <q-spinner-grid color="primary" size="3em" />
-          <div class="text-subtitle1 q-mt-md text-grey-7">{{ loadingMessage }}</div>
+          <div class="text-subtitle1 q-mt-md" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-7'">{{ loadingMessage }}</div>
         </div>
 
         <!-- 成功顯示結果 -->
@@ -23,7 +23,7 @@
             <q-icon :name="getWeatherIcon(weather.weatherCode)" size="4rem" color="orange-8" />
             <div class="column items-start">
               <div class="text-h3 text-weight-light">{{ Math.round(weather.temperature) }}°C</div>
-              <div class="text-subtitle1 text-grey-8">
+              <div class="text-subtitle1" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-8'">
                 {{ getWeatherDesc(weather.weatherCode) }}
               </div>
             </div>
@@ -34,15 +34,15 @@
           <!-- 詳細數據 -->
           <div class="row full-width justify-around q-gutter-sm">
             <div class="column items-center">
-              <div class="text-caption text-grey-6">濕度</div>
+              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">濕度</div>
               <div class="text-body1 text-weight-medium">{{ weather.humidity }}%</div>
             </div>
             <div class="column items-center">
-              <div class="text-caption text-grey-6">緯度</div>
+              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">緯度</div>
               <div class="text-body2 font-mono">{{ location.latitude.toFixed(4) }}</div>
             </div>
             <div class="column items-center">
-              <div class="text-caption text-grey-6">經度</div>
+              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">經度</div>
               <div class="text-body2 font-mono">{{ location.longitude.toFixed(4) }}</div>
             </div>
           </div>
@@ -68,7 +68,7 @@
         </div>
       </q-card>
 
-      <div class="text-caption text-grey-6 q-mt-xl">數據由 Open-Meteo & 瀏覽器定位提供</div>
+      <div class="text-caption q-mt-xl" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">數據由 Open-Meteo & 瀏覽器定位提供</div>
     </div>
   </q-page>
 </template>
@@ -76,6 +76,9 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
+import { useQuasar } from 'quasar';
+
+const $q = useQuasar();
 
 // 定義型別
 interface LocationCoords {

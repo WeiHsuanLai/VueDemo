@@ -3,7 +3,7 @@ name: Deploy Quasar TS Site
 on:
   push:
     branches:
-      - main # 或是你的預設分支名稱
+      - main # 確保這是你的預設分支名稱
 
 jobs:
   build-and-deploy:
@@ -23,15 +23,23 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies 📦
-        run: npm install
+        # 使用 ci 確保安裝環境純淨，避免版本衝突
+        run: npm ci || npm install
 
       - name: Type Check & Build 🚀
-        # Vite 版本的 Quasar 會在 build 時自動進行 TS 檢查
+        # 在這裡執行編譯。Vite 版本的 Quasar 會產出到 dist/spa
+        # 我們維持使用原本的 quasar.config.ts 邏輯
         run: npx quasar build
+
+      - name: Add .nojekyll 📄
+        # GitHub Pages 預設會過濾底線開頭的資料夾（如 _payload.js）
+        # 加上此檔案可以確保 Quasar 的資源能被正確讀取
+        run: touch dist/spa/.nojekyll
 
       - name: Deploy to GitHub Pages ✈️
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/spa
-          branch: gh-pages
-          clean: true
+          folder: dist/spa # 部署編譯後的資料夾
+          branch: gh-pages # 部署到的目標分支
+          clean: true # 部署前清理目標分支的舊檔案
+          single-commit: true # 保持 gh-pages 分支簡潔

@@ -54,7 +54,12 @@ export default defineConfig((/* ctx */) => {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: process.env.NODE_ENV === 'production' ? '/VueDemo/' : '/',
+      // publicPath: process.env.NODE_ENV === 'production' ? '/VueDemo/' : '/',
+
+      // 優先檢查是否在 Netlify 環境，如果是則設為 '/'
+      publicPath: process.env.NETLIFY === 'true'
+        ? '/'
+        : (process.env.NODE_ENV === 'production' ? '/VueDemo/' : '/'),
       // analyze: true,
       // env: {},
       // rawDefine: {}

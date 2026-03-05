@@ -169,14 +169,14 @@
       <div class="reveal">
         <h2 class="text-h4 text-weight-bold q-mb-xl text-center">Projects</h2>
         <div class="row q-col-gutter-lg">
-          <div v-for="i in 3" :key="i" class="col-12 col-sm-4">
+          <div v-for="project in projects" :key="project.title" class="col-12 col-sm-4">
             <q-card class="my-card cursor-pointer" flat bordered>
-              <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" :ratio="16 / 9" />
+              <q-img :src="project.image" :ratio="16 / 9" />
               <q-card-section>
-                <div class="text-h6">專案名稱 {{ i }}</div>
-                <div class="text-subtitle2 text-grey-7 q-mb-sm">Vue 3 + TypeScript</div>
+                <div class="text-h6">{{ project.title }}</div>
+                <div class="text-subtitle2 text-grey-7 q-mb-sm">{{ project.subtitle }}</div>
                 <div class="text-body2">
-                  這是一個使用 Quasar Framework 開發的範例專案，展示了極致的 UI/UX 與效能優化。
+                  {{ project.description }}
                 </div>
               </q-card-section>
               <q-card-actions align="right">
@@ -184,8 +184,7 @@
               </q-card-actions>
             </q-card>
           </div>
-        </div>
-      </div>
+        </div>      </div>
     </section>
 
     <!-- Contact Section -->
@@ -357,6 +356,27 @@ const skillGroups: SkillGroup[] = [
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg',
       },
     ],
+  },
+];
+
+const projects = [
+  {
+    title: '企業級後台管理系統',
+    subtitle: 'Vue 3 + TypeScript + Quasar',
+    description: '主導開發的高效能管理介面，整合 RBAC 權限控管與數據可視化，顯著提升企業內部作業流程效率。',
+    image: 'https://cdn.quasar.dev/img/parallax2.jpg',
+  },
+  {
+    title: '跨平台 App 維護與開發',
+    subtitle: 'uniapp + Vue',
+    description: '負責維護現有 APP，確保 iOS 與 Android 平台的穩定運行，並進行跨端相容性優化。',
+    image: 'https://cdn.quasar.dev/img/parallax1.jpg',
+  },
+  {
+    title: '前端效能優化專案',
+    subtitle: 'Vite + Vue 3',
+    description: '針對大型 Web 應用進行載入速度優化，利用代碼分割與快取策略減少 40% 的首屏載入時間。',
+    image: 'https://cdn.quasar.dev/img/mountains.jpg',
   },
 ];
 

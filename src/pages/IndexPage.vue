@@ -1,8 +1,8 @@
 <template>
   <q-page class="column items-center">
-    <!-- Hero / About Section -->
+    <!-- Hero Section -->
     <section
-      id="about"
+      id="hero"
       class="full-width q-pa-xl bg-grey-1 flex flex-center"
       style="min-height: 90vh"
     >
@@ -15,24 +15,98 @@
           icon="person"
         />
         <h1 class="text-h2 text-weight-bolder q-mb-md">
-          <span ref="typedElement"></span>
+          Hello, I'm <span class="text-gradient">Weihsuan Lai</span>
         </h1>
-        <p class="text-h5 text-grey-8 q-mb-none">Frontend Engineer | Vue 3 & TypeScript</p>
+        <p class="text-h5 text-grey-8 q-mb-none">
+          <span ref="typedElement"></span>
+        </p>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="full-width q-pa-xl bg-white">
+      <div class="max-width-container q-mx-auto">
+        <div class="row q-col-gutter-xl items-center">
+          <div class="col-12 col-md-5 text-center">
+            <q-img
+              src="https://cdn.quasar.dev/img/material.png"
+              style="max-width: 400px; border-radius: 20px"
+              class="shadow-2"
+            />
+          </div>
+          <div class="col-12 col-md-7">
+            <h2 class="text-h4 text-weight-bold q-mb-lg">About Me</h2>
+            <div class="text-body1 text-grey-8 line-height-relaxed">
+              <p class="q-mb-md">
+                您好！我是 <strong>賴偉璿</strong>，目前任職於
+                <strong>承翊系統整合股份有限公司</strong>。作為一名專注於 <strong>Vue 3</strong> 與
+                <strong>TypeScript</strong>
+                生態系的前端工程師，我熱衷於將複雜的業務邏輯轉化為直覺且優雅的使用者介面。
+              </p>
+              <p class="q-mb-md">
+                憑藉過去在<strong>室內設計</strong>領域累積的結構化思維與對細節的極致追求，我能以獨特的視角平衡視覺美感與開發效能。在轉型為開發者的過程中，我深刻體會到「代碼即藝術」的精髓，致力於撰寫具備高擴展性且易於維護的乾淨程式碼
+                (Clean Code)。
+              </p>
+              <p class="q-mb-md">
+                我具備深厚的<strong>企業級後台架構</strong>開發經驗，擅長處理權限控管
+                (RBAC)、數據圖表整合及複雜的業務流程優化。同時，我也具備
+                <strong>uniapp</strong> 跨平台開發與維護經驗，負責公司現有 APP 在 iOS 與 Android
+                平台上的功能迭代與穩定性優化，為企業提供高效、統一的多端解決方案。
+              </p>
+              <p>
+                目前，我正積極精進
+                <strong>AWS 雲端架構</strong> 與前端效能最佳化技術。同時，我也擅長運用
+                <strong>AI 工具輔助開發</strong>，透過精準的 Prompt Engineering
+                提升開發效率、優化程式碼邏輯並快速導入新技術，期許能透過技術的深度與廣度，為專案創造卓越的用戶價值。
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience" class="full-width q-pa-xl" style="max-width: 1000px">
-      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">
-        <q-icon name="work" color="grey-8" class="q-mr-sm" />Work Experience
-      </h2>
+      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">Work Experience</h2>
       <q-timeline color="grey-8" :layout="timelineLayout">
-        <q-timeline-entry title="前端工程師" subtitle="2022 - 至今" side="right" icon="computer">
+        <q-timeline-entry
+          title="前端工程師"
+          subtitle="2024/11 - 至今 | 承翊系統整合股份有限公司"
+          side="right"
+          icon="computer"
+        >
           <div>
             主導企業級 Web 應用的前端架構開發，使用 <strong>Vue 3</strong> 與
             <strong>TypeScript</strong> 建立高效能且可維護的代碼庫。
             負責將複雜的業務需求轉化為流暢的 UI/UX，並利用
-            <strong>Quasar Framework</strong> 實現跨平台兼容性。
+            <strong>Quasar Framework</strong> 實現跨平台兼容性。 同時，<strong
+              >善於運用 AI 工具輔助開發</strong
+            >，顯著提升了代碼編寫速度與單元測試覆蓋率，並優化了整體的開發工作流程。
+          </div>
+        </q-timeline-entry>
+
+        <q-timeline-entry
+          title="後台管理系統開發 (Enterprise Admin Panel)"
+          subtitle="專案實作"
+          side="left"
+          icon="settings"
+        >
+          <div>
+            開發高複雜度的後台管理介面，實現<strong>動態權限控管 (RBAC)</strong
+            >、大數據量列表優化及可視化圖表 (Echarts/Chart.js) 整合。
+            優化後台操作流程，提升管理端作業效率達 30% 以上。
+          </div>
+        </q-timeline-entry>
+
+        <q-timeline-entry
+          title="跨平台 App 維護與優化 (uniapp / Vue)"
+          subtitle="現有 App 迭代"
+          side="right"
+          icon="smartphone"
+        >
+          <div>
+            負責 <strong>uniapp</strong> 跨平台 App 的日常維護與功能開發，確保
+            <strong>iOS 與 Android 平台</strong> 的穩定運行與介面優化，並處理跨端相容性問題。
           </div>
         </q-timeline-entry>
 
@@ -61,7 +135,7 @@
     <!-- Skills Section -->
     <section id="skills" class="full-width q-pa-xl bg-grey-2">
       <div class="text-center" style="max-width: 1000px; margin: 0 auto">
-        <h2 class="text-h4 text-weight-bold q-mb-xl">專業技能</h2>
+        <h2 class="text-h4 text-weight-bold q-mb-xl">Expertise</h2>
         <div class="row q-col-gutter-lg">
           <div v-for="skillGroup in skillGroups" :key="skillGroup.title" class="col-12 col-sm-6">
             <q-card flat bordered class="full-height">
@@ -91,9 +165,7 @@
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="full-width q-pa-xl" style="max-width: 1200px">
-      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">
-        <q-icon name="code" color="grey-8" class="q-mr-sm" />精選作品
-      </h2>
+      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">Projects</h2>
       <div class="row q-col-gutter-lg">
         <div v-for="i in 3" :key="i" class="col-12 col-sm-4">
           <q-card class="my-card cursor-pointer" flat bordered>
@@ -145,7 +217,7 @@ let typed: Typed | null = null;
 onMounted(() => {
   if (typedElement.value) {
     typed = new Typed(typedElement.value, {
-      strings: ["Hello, I'm Weihsuan Lai", '你好，我是賴偉璿'],
+      strings: ['Frontend Engineer | Vue 3 & TypeScript', '前端工程師 | Vue 3 & TypeScript'],
       typeSpeed: 60,
       backSpeed: 40,
       backDelay: 2000,
@@ -179,60 +251,91 @@ interface SkillGroup {
 
 const skillGroups: SkillGroup[] = [
   {
-    title: '前端開發',
+    title: '程式語言與核心技術',
     list: [
       {
-        name: 'Vue 3',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+        name: 'JavaScript',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
       },
       {
         name: 'TypeScript',
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
       },
       {
-        name: 'Quasar',
-        icon: 'https://cdn.quasar.dev/logo-v2/svg/logo.svg',
+        name: 'HTML5',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
       },
       {
-        name: 'Vite',
-        icon: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg',
-      },
-      {
-        name: 'Pinia',
-        icon: 'https://pinia.vuejs.org/logo.svg',
-      },
-      {
-        name: 'Tailwind CSS',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
+        name: 'CSS3',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
       },
     ],
   },
   {
-    title: '後端與工具',
+    title: '前端框架與庫',
+    list: [
+      {
+        name: 'Vue.js',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+      },
+      {
+        name: 'Quasar',
+        icon: 'https://cdn.quasar.dev/logo-v2/svg/logo.svg',
+      },
+      {
+        name: 'Vuetify',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuetify/vuetify-original.svg',
+      },
+    ],
+  },
+  {
+    title: '後端與資料庫',
     list: [
       {
         name: 'Node.js',
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
       },
       {
-        name: 'Express',
+        name: 'MongoDB',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+      },
+      {
+        name: 'Express.js',
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
       },
+    ],
+  },
+  {
+    title: '開發工具與版本控制',
+    list: [
       {
-        name: 'PostgreSQL',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-      },
-      {
-        name: 'AWS',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
-      },
-      {
-        name: 'Docker',
-        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+        name: 'GitHub',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
       },
       {
         name: 'Git',
         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+      },
+      {
+        name: 'VS Code',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',
+      },
+      {
+        name: 'Vite',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg',
+      },
+    ],
+  },
+  {
+    title: '設計工具 (Adobe 系列)',
+    list: [
+      {
+        name: 'Photoshop',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg',
+      },
+      {
+        name: 'Illustrator',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg',
       },
     ],
   },
@@ -257,6 +360,14 @@ section {
   }
 }
 
+.text-gradient {
+  background: linear-gradient(135deg, #1976d2 0%, #9c27b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
 .animate-fade {
   animation: fadeIn 1.5s ease-in;
 }
@@ -275,5 +386,14 @@ section {
 /* Typed.js 游標顏色 */
 :deep(.typed-cursor) {
   color: var(--q-primary);
+}
+
+/* 時間軸文字統一靠左對齊 */
+:deep(.q-timeline__entry--left) {
+  .q-timeline__content,
+  .q-timeline__subtitle,
+  .q-timeline__title {
+    text-align: left !important;
+  }
 }
 </style>

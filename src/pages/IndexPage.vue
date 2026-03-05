@@ -1,194 +1,279 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="column items-center text-center q-gutter-md" style="max-width: 800px">
-      <div class="text-h4 text-primary text-weight-bold">目前位置與天氣</div>
+  <q-page class="column items-center">
+    <!-- Hero / About Section -->
+    <section
+      id="about"
+      class="full-width q-pa-xl bg-grey-1 flex flex-center"
+      style="min-height: 90vh"
+    >
+      <div class="text-center animate-fade">
+        <q-avatar
+          size="180px"
+          class="q-mb-xl shadow-10"
+          color="grey-4"
+          text-color="white"
+          icon="person"
+        />
+        <h1 class="text-h2 text-weight-bolder q-mb-md">
+          <span ref="typedElement"></span>
+        </h1>
+        <p class="text-h5 text-grey-8 q-mb-none">Frontend Engineer | Vue 3 & TypeScript</p>
+      </div>
+    </section>
 
-      <!-- 地理位置與天氣卡片 -->
-      <q-card
-        flat
-        bordered
-        class="q-pa-lg q-mt-lg shadow-1"
-        style="min-width: 350px; border-radius: 12px"
-      >
-        <!-- 載入中狀態 -->
-        <div v-if="loadingLocation || loadingWeather" class="column items-center q-py-xl">
-          <q-spinner-grid color="primary" size="3em" />
-          <div class="text-subtitle1 q-mt-md" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-7'">{{ loadingMessage }}</div>
+    <!-- Experience Section -->
+    <section id="experience" class="full-width q-pa-xl" style="max-width: 1000px">
+      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">
+        <q-icon name="work" color="grey-8" class="q-mr-sm" />Work Experience
+      </h2>
+      <q-timeline color="grey-8" :layout="timelineLayout">
+        <q-timeline-entry title="前端工程師" subtitle="2022 - 至今" side="right" icon="computer">
+          <div>
+            主導企業級 Web 應用的前端架構開發，使用 <strong>Vue 3</strong> 與
+            <strong>TypeScript</strong> 建立高效能且可維護的代碼庫。
+            負責將複雜的業務需求轉化為流暢的 UI/UX，並利用
+            <strong>Quasar Framework</strong> 實現跨平台兼容性。
+          </div>
+        </q-timeline-entry>
+
+        <q-timeline-entry
+          title="前端網頁工程師培訓學員"
+          subtitle="2024/03 - 2024/08"
+          side="left"
+          icon="school"
+        >
+          <div>
+            在泰山職訓局參與高強度前端工程開發訓練，在短時間內掌握
+            <strong>Vue 生態系</strong> 與前端工程化思維。 期間獨立完成多項專案開發，從 UI
+            排版、資料串接到部署，建立了紮實的技術開發邏輯。
+          </div>
+        </q-timeline-entry>
+
+        <q-timeline-entry title="室內設計師助理" subtitle="2019 - 2021" side="right" icon="palette">
+          <div>
+            協助設計師進行空間規劃、CAD 施工圖繪製及現場工程進度跟進。
+            透過嚴謹的製圖訓練，建立了對細節的敏銳度與對美感的堅持，並學習如何與業主及工班進行有效的跨部門溝通。
+          </div>
+        </q-timeline-entry>
+      </q-timeline>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="full-width q-pa-xl bg-grey-2">
+      <div class="text-center" style="max-width: 1000px; margin: 0 auto">
+        <h2 class="text-h4 text-weight-bold q-mb-xl">專業技能</h2>
+        <div class="row q-col-gutter-lg">
+          <div v-for="skillGroup in skillGroups" :key="skillGroup.title" class="col-12 col-sm-6">
+            <q-card flat bordered class="full-height">
+              <q-card-section>
+                <div class="text-h6 q-mb-md text-grey-9">{{ skillGroup.title }}</div>
+                <div class="flex flex-center q-gutter-sm">
+                  <q-chip
+                    v-for="skill in skillGroup.list"
+                    :key="skill.name"
+                    color="white"
+                    text-color="grey-9"
+                    class="text-weight-bold shadow-1"
+                    size="18px"
+                  >
+                    <q-avatar>
+                      <img :src="skill.icon" :alt="skill.name" />
+                    </q-avatar>
+                    {{ skill.name }}
+                  </q-chip>
+                </div>
+              </q-card-section>
+            </q-card>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 成功顯示結果 -->
-        <div v-else-if="location && weather" class="column items-center">
-          <!-- 天氣圖示與溫度 -->
-          <div class="row items-center q-gutter-md q-mb-md">
-            <q-icon :name="getWeatherIcon(weather.weatherCode)" size="4rem" color="orange-8" />
-            <div class="column items-start">
-              <div class="text-h3 text-weight-light">{{ Math.round(weather.temperature) }}°C</div>
-              <div class="text-subtitle1" :class="$q.dark.isActive ? 'text-grey-4' : 'text-grey-8'">
-                {{ getWeatherDesc(weather.weatherCode) }}
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="full-width q-pa-xl" style="max-width: 1200px">
+      <h2 class="text-h4 text-weight-bold q-mb-xl text-center">
+        <q-icon name="code" color="grey-8" class="q-mr-sm" />精選作品
+      </h2>
+      <div class="row q-col-gutter-lg">
+        <div v-for="i in 3" :key="i" class="col-12 col-sm-4">
+          <q-card class="my-card cursor-pointer" flat bordered>
+            <q-img src="https://cdn.quasar.dev/img/parallax2.jpg" :ratio="16 / 9" />
+            <q-card-section>
+              <div class="text-h6">專案名稱 {{ i }}</div>
+              <div class="text-subtitle2 text-grey-7 q-mb-sm">Vue 3 + TypeScript</div>
+              <div class="text-body2">
+                這是一個使用 Quasar Framework 開發的範例專案，展示了極致的 UI/UX 與效能優化。
               </div>
-            </div>
-          </div>
-
-          <q-separator horizontal class="full-width q-my-md" />
-
-          <!-- 詳細數據 -->
-          <div class="row full-width justify-around q-gutter-sm">
-            <div class="column items-center">
-              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">濕度</div>
-              <div class="text-body1 text-weight-medium">{{ weather.humidity }}%</div>
-            </div>
-            <div class="column items-center">
-              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">緯度</div>
-              <div class="text-body2 font-mono">{{ location.latitude.toFixed(4) }}</div>
-            </div>
-            <div class="column items-center">
-              <div class="text-caption" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">經度</div>
-              <div class="text-body2 font-mono">{{ location.longitude.toFixed(4) }}</div>
-            </div>
-          </div>
-
-          <q-btn flat round color="primary" icon="refresh" @click="getLocation" class="q-mt-lg">
-            <q-tooltip>更新數據</q-tooltip>
-          </q-btn>
+            </q-card-section>
+            <q-card-actions align="right">
+              <q-btn flat color="grey-9" label="查看更多" />
+            </q-card-actions>
+          </q-card>
         </div>
+      </div>
+    </section>
 
-        <!-- 錯誤狀態 -->
-        <div v-else class="column items-center q-py-md">
-          <q-icon name="error_outline" size="3rem" color="negative" />
-          <div class="text-body1 text-negative q-mt-sm">{{ errorMessage || '無法取得數據' }}</div>
+    <!-- Contact Section -->
+    <section id="contact" class="full-width q-pa-xl bg-grey-10 text-white">
+      <div class="text-center" style="max-width: 600px; margin: 0 auto">
+        <h2 class="text-h4 text-weight-bold q-mb-lg">與我聯絡</h2>
+        <div class="q-mb-xl">
           <q-btn
-            unelevated
-            rounded
-            color="primary"
-            icon="my_location"
-            label="手動重試"
-            @click="getLocation"
-            class="q-mt-md"
+            flat
+            no-caps
+            icon="email"
+            size="xl"
+            :label="myEmail"
+            class="text-weight-bold"
+            @click="openMail"
           />
         </div>
-      </q-card>
-
-      <div class="text-caption q-mt-xl" :class="$q.dark.isActive ? 'text-grey-5' : 'text-grey-6'">數據由 Open-Meteo & 瀏覽器定位提供</div>
-    </div>
+      </div>
+    </section>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
-import axios from 'axios';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useQuasar } from 'quasar';
+import Typed from 'typed.js';
 
 const $q = useQuasar();
+const typedElement = ref<HTMLElement | null>(null);
+let typed: Typed | null = null;
 
-// 定義型別
-interface LocationCoords {
-  latitude: number;
-  longitude: number;
-}
-
-// Open-Meteo API 回傳的天氣資料結構
-interface WeatherData {
-  temperature: number;
-  humidity: number;
-  weatherCode: number;
-}
-
-const location = ref<LocationCoords | null>(null);
-const weather = ref<WeatherData | null>(null);
-const loadingLocation = ref(false);
-const loadingWeather = ref(false);
-const errorMessage = ref('');
-
-const loadingMessage = computed(() => {
-  if (loadingLocation.value) return '正在精確定位中...';
-  if (loadingWeather.value) return '正在抓取天氣資訊...';
-  return '';
+onMounted(() => {
+  if (typedElement.value) {
+    typed = new Typed(typedElement.value, {
+      strings: ["Hello, I'm Weihsuan Lai", '你好，我是賴偉璿'],
+      typeSpeed: 60,
+      backSpeed: 40,
+      backDelay: 2000,
+      loop: true,
+      cursorChar: '|',
+    });
+  }
 });
 
-// WMO 天氣代碼解釋與圖示對照
-const getWeatherDesc = (code: number) => {
-  if (code === 0) return '晴天';
-  if (code >= 1 && code <= 3) return '多雲';
-  if (code >= 45 && code <= 48) return '霧氣';
-  if (code >= 51 && code <= 67) return '毛毛雨/下雨';
-  if (code >= 71 && code <= 77) return '降雪';
-  if (code >= 80 && code <= 82) return '陣雨';
-  if (code >= 95) return '雷雨';
-  return '未知天氣';
+onUnmounted(() => {
+  if (typed) {
+    typed.destroy();
+  }
+});
+
+const myEmail = 'hsuan29684@gmail.com';
+
+const openMail = () => {
+  window.location.href = `mailto:${myEmail}`;
 };
 
-const getWeatherIcon = (code: number) => {
-  if (code === 0) return 'wb_sunny';
-  if (code >= 1 && code <= 3) return 'wb_cloudy';
-  if (code >= 45 && code <= 48) return 'cloud_queue';
-  if (code >= 51 && code <= 67) return 'umbrella';
-  if (code >= 71 && code <= 77) return 'ac_unit';
-  if (code >= 80 && code <= 82) return 'showers';
-  if (code >= 95) return 'thunderstorm';
-  return 'question_mark';
-};
+interface Skill {
+  name: string;
+  icon: string;
+}
 
-// 取得天氣資訊
-const fetchWeather = async (lat: number, lon: number) => {
-  loadingWeather.value = true;
-  try {
-    const response = await axios.get('https://api.open-meteo.com/v1/forecast', {
-      params: {
-        latitude: lat,
-        longitude: lon,
-        current: 'temperature_2m,relative_humidity_2m,weather_code',
+interface SkillGroup {
+  title: string;
+  list: Skill[];
+}
+
+const skillGroups: SkillGroup[] = [
+  {
+    title: '前端開發',
+    list: [
+      {
+        name: 'Vue 3',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
       },
-    });
+      {
+        name: 'TypeScript',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+      },
+      {
+        name: 'Quasar',
+        icon: 'https://cdn.quasar.dev/logo-v2/svg/logo.svg',
+      },
+      {
+        name: 'Vite',
+        icon: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg',
+      },
+      {
+        name: 'Pinia',
+        icon: 'https://pinia.vuejs.org/logo.svg',
+      },
+      {
+        name: 'Tailwind CSS',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
+      },
+    ],
+  },
+  {
+    title: '後端與工具',
+    list: [
+      {
+        name: 'Node.js',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+      },
+      {
+        name: 'Express',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+      },
+      {
+        name: 'PostgreSQL',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+      },
+      {
+        name: 'AWS',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+      },
+      {
+        name: 'Docker',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+      },
+      {
+        name: 'Git',
+        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+      },
+    ],
+  },
+];
 
-    const current = response.data.current;
-    weather.value = {
-      temperature: current.temperature_2m,
-      humidity: current.relative_humidity_2m,
-      weatherCode: current.weather_code,
-    };
-  } catch (error) {
-    console.error('天氣 API 錯誤:', error);
-    errorMessage.value = '無法連接到天氣服務。';
-  } finally {
-    loadingWeather.value = false;
-  }
-};
-
-// 取得位置資訊
-const getLocation = () => {
-  loadingLocation.value = true;
-  errorMessage.value = '';
-  location.value = null;
-  weather.value = null;
-
-  if (!navigator.geolocation) {
-    errorMessage.value = '您的瀏覽器不支援地理位置功能。';
-    loadingLocation.value = false;
-    return;
-  }
-
-  // 使用高精確度定位，並設定超時
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      location.value = { latitude: lat, longitude: lon };
-      loadingLocation.value = false;
-
-      // 成功定位後，呼叫天氣 API
-      void fetchWeather(lat, lon);
-    },
-    (error) => {
-      loadingLocation.value = false;
-      console.error('定位錯誤:', error);
-      errorMessage.value = '定位失敗：' + (error.code === 1 ? '權限被拒絕' : '無法偵測位置');
-    },
-    { enableHighAccuracy: true, timeout: 10000 },
-  );
-};
-
-// 組件掛載後自動取得位置與天氣
-onMounted(() => {
-  getLocation();
+const timelineLayout = computed(() => {
+  return $q.screen.lt.md ? 'dense' : 'loose';
 });
 </script>
+
+<style lang="scss" scoped>
+section {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.my-card {
+  transition: transform 0.3s;
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.animate-fade {
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typed.js 游標顏色 */
+:deep(.typed-cursor) {
+  color: var(--q-primary);
+}
+</style>

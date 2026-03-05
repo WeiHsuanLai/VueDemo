@@ -55,13 +55,14 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 const leftDrawerOpen = ref(false);
-const activeSection = ref('about');
+const activeSection = ref('hero');
 
 const menuItems = [
+  { label: 'Home', id: 'hero', icon: 'home' },
   { label: 'About', id: 'about', icon: 'person' },
   { label: 'Experience', id: 'experience', icon: 'work' },
   { label: 'Skills', id: 'skills', icon: 'star' },
-  { label: 'Portfolio', id: 'portfolio', icon: 'code' },
+  { label: 'Projects', id: 'portfolio', icon: 'code' },
   { label: 'Contact', id: 'contact', icon: 'email' }
 ];
 
@@ -97,10 +98,24 @@ const scrollToSection = (id: string) => {
 // 捲動追蹤邏輯 (Scroll Spy)
 let observer: IntersectionObserver | null = null;
 
+const handleScroll = () => {
+  // 檢查是否捲動到頁面底部
+  const scrollPosition = window.innerHeight + window.pageYOffset;
+  const pageHeight = document.documentElement.scrollHeight;
+  
+  // 距離底部小於 50px 時，強制選中最後一個項目
+  if (scrollPosition >= pageHeight - 50) {
+    const lastItem = menuItems[menuItems.length - 1];
+    if (lastItem) {
+      activeSection.value = lastItem.id;
+    }
+  }
+};
+
 onMounted(() => {
   const options = {
     root: null,
-    rootMargin: '-50% 0px -50% 0px', // 偵測目標是否進入畫面中心
+    rootMargin: '-20% 0px -70% 0px', // 向上偏移偵測範圍
     threshold: 0
   };
 
@@ -116,10 +131,13 @@ onMounted(() => {
     const el = document.getElementById(item.id);
     if (el) observer?.observe(el);
   });
+
+  window.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
   if (observer) observer.disconnect();
+  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

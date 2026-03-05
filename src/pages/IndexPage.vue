@@ -44,7 +44,8 @@
                 生態系的前端工程師，我熱衷於將複雜的業務邏輯轉化為直覺且優雅的使用者介面。
               </p>
               <p class="q-mb-md">
-                我具備高度的<strong>結構化思維</strong>與對<strong>技術細節</strong>的極致追求，擅長以工程化的視角平衡視覺美感與系統效能。在開發過程中，我致力於實踐「代碼即藝術」的精髓，撰寫具備高擴展性且易於維護的乾淨程式碼 (Clean Code)，並確保每一個功能模組都能達到最優的使用者體驗。
+                我具備高度的<strong>結構化思維</strong>與對<strong>技術細節</strong>的極致追求，擅長以工程化的視角平衡視覺美感與系統效能。在開發過程中，我致力於實踐「代碼即藝術」的精髓，撰寫具備高擴展性且易於維護的乾淨程式碼
+                (Clean Code)，並確保每一個功能模組都能達到最優的使用者體驗。
               </p>
               <p class="q-mb-md">
                 我具備深厚的<strong>企業級後台架構</strong>開發經驗，擅長處理權限控管
@@ -56,7 +57,10 @@
                 除了技術層面，我具備<strong>健談且善於溝通</strong>的特質，能有效跨部門協調需求，並以清晰的邏輯縮短開發與業務間的認知落差。我<strong>熱愛學習新事物</strong>，對於快速迭代的技術環境保持高度熱忱，並<strong>極其重視團隊合作</strong>，相信良好的同儕互動是打造卓越產品的核心基石。
               </p>
               <p>
-                目前，我正積極精進 <strong>AWS 雲端架構</strong> 與前端效能最佳化技術。同時，我也擅長運用 <strong>AI 工具輔助開發</strong>，透過精準的 Prompt Engineering 提升開發效率、優化程式碼邏輯並快速導入新技術，期許能透過技術的深度與廣度，為專案創造卓越的用戶價值。
+                目前，我正積極精進
+                <strong>AWS 雲端架構</strong> 與前端效能最佳化技術。同時，我也擅長運用
+                <strong>AI 工具輔助開發</strong>，透過精準的 Prompt Engineering
+                提升開發效率、優化程式碼邏輯並快速導入新技術，期許能透過技術的深度與廣度，為專案創造卓越的用戶價值。
               </p>
             </div>
           </div>
@@ -123,7 +127,12 @@
             </div>
           </q-timeline-entry>
 
-          <q-timeline-entry title="室內設計師助理" subtitle="2019 - 2021" side="right" icon="palette">
+          <q-timeline-entry
+            title="室內設計師助理"
+            subtitle="2019 - 2021"
+            side="right"
+            icon="palette"
+          >
             <div>
               協助設計師進行空間規劃、CAD 施工圖繪製及現場工程進度跟進。
               透過嚴謹的製圖訓練，建立了對細節的敏銳度與對美感的堅持，並學習如何與業主及工班進行有效的跨部門溝通。
@@ -184,11 +193,16 @@
               </q-card-actions>
             </q-card>
           </div>
-        </div>      </div>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="full-width q-pa-xl bg-grey-10 text-white" style="min-height: 40vh; display: flex; align-items: center;">
+    <section
+      id="contact"
+      class="full-width q-pa-xl bg-grey-10 text-white"
+      style="min-height: 40vh; display: flex; align-items: center"
+    >
       <div class="text-center" style="max-width: 600px; margin: 0 auto">
         <h2 class="text-h4 text-weight-bold q-mb-lg">Contact</h2>
         <div class="q-mb-xl">
@@ -237,7 +251,7 @@ onMounted(() => {
         }
       });
     },
-    { threshold: 0.15 }
+    { threshold: 0.15 },
   );
 
   document.querySelectorAll('.reveal').forEach((el) => {
@@ -363,7 +377,8 @@ const projects = [
   {
     title: '企業級後台管理系統',
     subtitle: 'Vue 3 + TypeScript + Quasar',
-    description: '主導開發的高效能管理介面，整合 RBAC 權限控管與數據可視化，顯著提升企業內部作業流程效率。',
+    description:
+      '主導開發的高效能管理介面，整合 RBAC 權限控管與數據可視化，顯著提升企業內部作業流程效率。',
     image: 'https://cdn.quasar.dev/img/parallax2.jpg',
   },
   {
@@ -375,7 +390,8 @@ const projects = [
   {
     title: '前端效能優化專案',
     subtitle: 'Vite + Vue 3',
-    description: '針對大型 Web 應用進行載入速度優化，利用代碼分割與快取策略減少 40% 的首屏載入時間。',
+    description:
+      '針對大型 Web 應用進行載入速度優化，利用代碼分割與快取策略減少 40% 的首屏載入時間。',
     image: 'https://cdn.quasar.dev/img/mountains.jpg',
   },
 ];

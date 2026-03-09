@@ -1,22 +1,31 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="bg-grey-10 text-grey-4">
-      <q-toolbar class="justify-center q-py-sm">
-        <!-- 桌面版置中選單 -->
-        <div class="gt-xs row q-gutter-x-lg">
-          <div
-            v-for="item in menuItems"
-            :key="item.id"
-            class="nav-item cursor-pointer text-weight-bold"
-            :class="{ 'active-link': activeSection === item.id }"
-            @click="scrollToSection(item.id)"
-          >
-            {{ item.label }}
+      <q-toolbar class="q-py-md justify-center">
+        <div class="row items-center q-gutter-x-lg">
+          <!-- Logo / 置中首頁連結 -->
+          <div class="logo-container cursor-pointer" @click="scrollToSection('hero')">
+            <q-avatar size="42px" class="q-hoverable">
+              <img src="icons/favicon-512x512.png" alt="Logo" />
+            </q-avatar>
+          </div>
+
+          <!-- 桌面版選單 -->
+          <div class="gt-xs row q-gutter-x-lg items-center">
+            <div
+              v-for="item in menuItems"
+              :key="item.id"
+              class="nav-item cursor-pointer text-weight-bold"
+              :class="{ 'active-link': activeSection === item.id }"
+              @click="scrollToSection(item.id)"
+            >
+              {{ item.label }}
+            </div>
           </div>
         </div>
 
         <!-- 行動版選單按鈕 -->
-        <q-btn flat dense round icon="menu" aria-label="Menu" class="lt-sm absolute-right q-mr-md text-white" @click="toggleLeftDrawer" />
+        <q-btn flat dense round icon="menu" aria-label="Menu" class="lt-sm absolute-right q-mr-lg text-white" @click="toggleLeftDrawer" />
       </q-toolbar>
     </q-header>
 
@@ -167,6 +176,13 @@ onUnmounted(() => {
 
   &:hover::after {
     width: 80%;
+  }
+}
+
+.logo-container {
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
   }
 }
 

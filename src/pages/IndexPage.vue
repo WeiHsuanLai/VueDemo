@@ -7,13 +7,13 @@
       style="min-height: 90vh"
     >
       <div class="text-center reveal">
-        <q-avatar
-          size="180px"
-          class="q-mb-xl shadow-10"
-          color="grey-4"
-          text-color="white"
-          icon="person"
-        />
+        <q-avatar size="180px" class="q-mb-xl shadow-10" style="flex-shrink: 0">
+          <img
+            :src="userProfileImg"
+            alt="User Profile"
+            style="object-fit: cover; width: 100%; height: 100%"
+          />
+        </q-avatar>
         <h1 class="text-h2 text-weight-bolder q-mb-md">
           Hello, I'm <span class="text-gradient">Weihsuan Lai</span>
         </h1>
@@ -29,9 +29,9 @@
         <div class="row q-col-gutter-xl items-center">
           <div class="col-12 col-md-5 text-center">
             <q-img
-              src="https://cdn.quasar.dev/img/material.png"
-              style="max-width: 400px; border-radius: 20px"
-              class="shadow-2"
+              :src="aboutProfileBg"
+              style="max-width: 550px; border-radius: 24px"
+              class="shadow-2 about-image-hover full-width"
             />
           </div>
           <div class="col-12 col-md-7">
@@ -161,7 +161,11 @@
                     size="18px"
                   >
                     <q-avatar>
-                      <img :src="skill.icon" :alt="skill.name" />
+                      <img
+                        :src="skill.icon"
+                        :alt="skill.name"
+                        style="object-fit: cover; width: 100%; height: 100%"
+                      />
                     </q-avatar>
                     {{ skill.name }}
                   </q-chip>
@@ -225,6 +229,8 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import Typed from 'typed.js';
+import userProfileImg from 'assets/user-profile.jpg';
+import aboutProfileBg from 'assets/about-profile-bg.png';
 
 const $q = useQuasar();
 const typedElement = ref<HTMLElement | null>(null);
@@ -233,11 +239,12 @@ let typed: Typed | null = null;
 onMounted(() => {
   if (typedElement.value) {
     typed = new Typed(typedElement.value, {
-      strings: ['Frontend Engineer | Vue 3 & TypeScript', '前端工程師 | Vue 3 & TypeScript'],
-      typeSpeed: 60,
-      backSpeed: 40,
-      backDelay: 2000,
+      strings: ['Frontend Engineer | Vue 3 ', '前端工程師 | Vue 3 '],
+      typeSpeed: 70,
+      backSpeed: 50,
+      backDelay: 1500,
       loop: true,
+      smartBackspace: true,
       cursorChar: '|',
     });
   }
@@ -412,6 +419,14 @@ section {
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.about-image-hover {
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  &:hover {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
   }
 }
 
